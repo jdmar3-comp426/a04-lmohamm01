@@ -60,11 +60,13 @@ app.patch("/app/update/user/:id", (req, res) => {
 app.delete("/app/delete/user/:id", (req, res) => {
     const stmt = db.prepare("DELETE DROM userinfo where id = ?");
     const info = stmt.run(req.params.id);
-    res.status(200).json({ "message": info.changes + " record deleted: ID " + req.params.id + " (200)" });
+    res.status(200).json({
+        message: info.changes + " record deleted: ID " + req.params.id + " (200)",
+    });
 });
 
 // Default response for any other request
 app.use(function(req, res) {
-    res.json({ "message": "Your API is working!" });
+    res.json({ "message": "Endpoint not found." });
     res.status(404);
 });
